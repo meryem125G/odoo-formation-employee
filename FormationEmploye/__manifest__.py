@@ -5,7 +5,19 @@
     'category': "Human Resources",
     'summary': "Gestion complète des formations des employés",
 
-    'description': open('FormationEmploye/static/description/index.html', encoding='utf-8').read(),
+    'description': """
+<h2>Formation Employé</h2>
+<p>Gestion complète des formations des employés</p>
+<ul>
+  <li>Planification des sessions de formation</li>
+  <li>Suivi administratif des participants</li>
+  <li>Suivi des compétences et indicateurs (KPI)</li>
+  <li>Gestion des formateurs et organismes</li>
+  <li>Organisation par thèmes et modules</li>
+  <li>Analyse et reporting</li>
+</ul>
+<p>Vidéo de démonstration (commentée pour l'instant)</p>
+""",
 
 
 
