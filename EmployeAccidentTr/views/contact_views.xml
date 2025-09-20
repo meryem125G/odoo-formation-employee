@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Vue Liste -->
+        <record id="view_assurance_contact_list" model="ir.ui.view">
+            <field name="name">assurance.contact.list</field>
+            <field name="model">assurance.contact</field>
+            <field name="arch" type="xml">
+                <list string="Contacts Assurance" default_order="name asc"
+                      decoration-muted="not actif"
+                      decoration-success="actif">
+                    <field name="name"/>
+                    <field name="fonction"/>
+                    <field name="email"/>
+                    <field name="email_secondaire"/>
+                    <field name="telephone_fixe"/>
+                    <field name="telephone_mobile"/>
+                    <field name="organisme_id"/>
+                    <field name="actif"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Vue Formulaire -->
+        <record id="view_assurance_contact_form" model="ir.ui.view">
+            <field name="name">assurance.contact.form</field>
+            <field name="model">assurance.contact</field>
+            <field name="arch" type="xml">
+                <form string="Contact Assurance">
+                    <sheet>
+                        <group string="Informations principales">
+                            <group>
+                                <field name="name"/>
+                                <field name="fonction"/>
+                                <field name="organisme_id"/>
+                                <field name="actif"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Coordonnées">
+                                <group>
+                                    <group>
+                                        <field name="email"/>
+                                        <field name="email_secondaire"/>
+                                    </group>
+                                    <group>
+                                        <field name="telephone_fixe"/>
+                                        <field name="telephone_mobile"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="adresse" widget="text"/>
+                                </group>
+                            </page>
+
+                            <page string="Notes">
+                                <field name="notes" widget="text"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vue Kanban -->
+        <record id="view_assurance_contact_kanban" model="ir.ui.view">
+            <field name="name">assurance.contact.kanban</field>
+            <field name="model">assurance.contact</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="organisme_id">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <strong><field name="name"/></strong>
+                                <div><b>Fonction :</b> <field name="fonction"/></div>
+                                <div><b>Email :</b> <field name="email"/></div>
+                                <div><b>Téléphone :</b> <field name="telephone_mobile"/></div>
+                                <div><b>Organisme :</b> <field name="organisme_id"/></div>
+                                <div><b>Actif :</b> <field name="actif"/></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_contact" model="ir.actions.act_window">
+            <field name="name">Contacts Assurance</field>
+            <field name="res_model">assurance.contact</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Aucun contact enregistré pour le moment, cliquez sur "Créer" pour ajouter.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

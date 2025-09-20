@@ -1,0 +1,21 @@
+<!-- static/src/img/body_front.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 500">
+    <g id="tete" class="clickable" style="fill:#ccc;stroke:#000;stroke-width:1;">
+        <circle cx="100" cy="50" r="30"/>
+    </g>
+    <g id="torse" class="clickable" style="fill:#ccc;stroke:#000;stroke-width:1;">
+        <rect x="70" y="80" width="60" height="120"/>
+    </g>
+    <g id="bras_gauche" class="clickable" style="fill:#ccc;stroke:#000;stroke-width:1;">
+        <rect x="30" y="80" width="40" height="100"/>
+    </g>
+    <g id="bras_droit" class="clickable" style="fill:#ccc;stroke:#000;stroke-width:1;">
+        <rect x="130" y="80" width="40" height="100"/>
+    </g>
+    <g id="jambe_gauche" class="clickable" style="fill:#ccc;stroke:#000;stroke-width:1;">
+        <rect x="70" y="200" width="25" height="150"/>
+    </g>
+    <g id="jambe_droite" class="clickable" style="fill:#ccc;stroke:#000;stroke-width:1;">
+        <rect x="105" y="200" width="25" height="150"/>
+    </g>
+</svg>

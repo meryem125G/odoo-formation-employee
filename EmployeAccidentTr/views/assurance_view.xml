@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- List View -->
+        <record id="view_assurance_organisme_list" model="ir.ui.view">
+            <field name="name">assurance.organisme.list</field>
+            <field name="model">assurance.organisme</field>
+            <field name="arch" type="xml">
+                <list string="Organismes d'Assurance">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="type_assurance"/>
+                    <field name="telephone"/>
+                    <field name="email"/>
+                    <field name="site_web"/>
+                    <field name="actif"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_assurance_organisme_form" model="ir.ui.view">
+            <field name="name">assurance.organisme.form</field>
+            <field name="model">assurance.organisme</field>
+            <field name="arch" type="xml">
+                <form string="Organisme d'Assurance">
+                    <sheet>
+                       <group string="Informations Générales">
+    <group>
+        <field name="name"/>
+    </group>
+    <group>
+        <field name="code"/>
+    </group>
+</group>
+
+<group string="Type et Description">
+    <group>
+        <field name="type_assurance"/>
+    </group>
+    <group>
+        <field name="description" widget="text"/>
+    </group>
+</group>
+
+<group string="Coordonnées">
+    <group>
+        <field name="telephone"/>
+    </group>
+    <group>
+        <field name="fax"/>
+    </group>
+</group>
+
+<group>
+    <group>
+        <field name="email"/>
+    </group>
+    <group>
+        <field name="site_web"/>
+    </group>
+</group>
+
+<group>
+    <group>
+        <field name="adresse" widget="text"/>
+    </group>
+    <group/>
+</group>
+
+                        <group string="Statut">
+                            <field name="actif"/>
+                        </group>
+
+                        <notebook>
+                            <page string="Contacts">
+                                <field name="contact_person_ids">
+                                    <list editable="bottom">
+                                        <field name="name"/>
+                                        <field name="fonction"/>
+                                        <field name="email"/>
+                                        <field name="email_secondaire"/>
+                                        <field name="telephone_fixe"/>
+                                        <field name="telephone_mobile"/>
+                                        <field name="actif"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            <page string="Accidents liés">
+                                <field name="accident_ids">
+                                    <list>
+                                        <field name="accident_code"/>
+                                        <field name="name"/>
+                                        <field name="date_accident"/>
+                                        <field name="heure_accident"/>
+                                        <field name="employe_id"/>
+                                        <field name="gravite"/>
+                                        <field name="statutNouv" widget="badge"
+                                            options="{'color_map': {
+                                                'valide': 'success',
+                                                'refuse': 'danger',
+                                                'cloture': 'info',
+                                                'en_cours': 'warning'
+                                            }}"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Kanban View -->
+        <record id="view_assurance_organisme_kanban" model="ir.ui.view">
+            <field name="name">assurance.organisme.kanban</field>
+            <field name="model">assurance.organisme</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <strong><field name="name"/></strong>
+                                <div>
+                                    <b>Type:</b> <field name="type_assurance"/>
+                                </div>
+                                <div>
+                                    <b>Téléphone:</b> <field name="telephone"/>
+                                </div>
+                                <div>
+                                    <b>Email:</b> <field name="email"/>
+                                </div>
+                                <div>
+                                    <b>Actif:</b> <field name="actif"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Action pour menu -->
+        <record id="action_assurance" model="ir.actions.act_window">
+            <field name="name">Organismes d'Assurance</field>
+            <field name="res_model">assurance.organisme</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Aucun organisme enregistré pour le moment, cliquez sur "Créer" pour ajouter.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

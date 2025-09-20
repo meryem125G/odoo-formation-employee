@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="view_accident_tr_list" model="ir.ui.view">
+    <field name="name">accident.travail.list</field>
+    <field name="model">accident.travail</field>
+    <field name="arch" type="xml">
+        <list string="Accidents de Travail" default_order="date_accident desc"
+      decoration-success="statutNouv == 'valide'"
+        >
+    <field name="accident_code"/>
+    <field name="name"/>
+    <field name="date_accident"/>
+    <field name="heure_accident"/>
+    <field name="employe_id"/>
+    <field name="lieu_accident"/>
+    <field name="gravite"/>
+<field name="statutNouv" widget="badge"
+       options="{'color_map': {
+           'valide': 'success',
+           'refuse': 'danger',
+           'cloture': 'info',
+           'en_cours': 'warning'
+       }}"/>
+    <field name="responsable_id"/>
+     <button name="action_valider" type="object" string="Valider" class="btn-primary"/>
+                    <button name="action_refuser" type="object" string="Refuser" class="btn-danger"/>
+                    <button name="action_assurance" type="object" string="Assurance" class="btn-warning"/>
+
+</list>
+
+   
+    </field>
+</record>
+
+
+          <!-- Form -->
+        <record id="view_accident_tr_form" model="ir.ui.view">
+            <field name="name">accident.travail.form</field>
+            <field name="model">accident.travail</field>
+            <field name="arch" type="xml">
+                <form string="Accident de Travail">
+                    <header>
+                       <!-- Boutons par ligne -->
+                    <button name="action_valider" type="object" string="Valider" class="btn-primary"/>
+                    <button name="action_refuser" type="object" string="Refuser" class="btn-danger"/>
+                    <button name="action_assurance" type="object" string="Assurance" class="btn-warning"/>
+
+                    </header>
+                    <sheet>
+                        <group string="Informations principales">
+                            <group>
+                                <field name="accident_code"/>
+                                <field name="name"/>
+                                <field name="date_accident"/>
+                                <field name="heure_accident"/>
+                                <field name="employe_id"/>
+                                <field name="lieu_accident"/>
+                            </group>
+                            <group>
+                                <field name="gravite"/>
+                                <field name="blessure"/>
+                                <field name="partie_corps"/>
+                                <field name="jours_arret"/>
+                                <field name="hospitalisation"/>
+                                <field name="type_accident"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                           <page string="Description" col="2" class="bg-light">
+    <group col="2" class="bg-secondary p-2 rounded">
+        <field name="description" widget="text"/>
+        <field name="cause_accident" widget="text"/>
+        <field name="mesures_correctives" widget="text"/>
+    </group>
+</page>
+
+                           <page string="Suivi Médical">
+    <!-- Ligne 1 -->
+    <group col="2" class="bg-info p-2 rounded">
+    <group>
+        <group>
+           <field name="temoins_ids" widget="many2many_tags"/>
+        </group>
+        <group>
+            <field name="premier_soin" widget="text"/>
+        </group>
+    </group>
+    <!-- Ligne 2 -->
+    <group>
+        <group>
+            <field name="medecin_traitant"/>
+        </group>
+        <group>
+            <field name="date_consultation"/>
+        </group>
+    </group>
+    <!-- Ligne 3 -->
+    <group>
+        <group>
+            <field name="certificat_medical" widget="binary"/>
+        </group>
+        <group/>
+    </group>    
+    <group>
+        
+        <group>
+            <field name="incapacite_permanente"/>
+        </group>
+    </group>
+    <!-- Ligne 7 -->
+    <group>
+        <group>
+            <field name="taux_incapacite"/>
+        </group>
+        <group/>
+    </group></group>
+</page>
+<page string="Prolongations">
+<group col="2" class="bg-secondary p-2 rounded">
+    <!-- Dates et nombre de jours d'arrêt du parent -->
+    <group string="Résumé arrêt de travail" >
+        <field name="date_reprise"/>
+        <field name="jours_arret" readonly="1"/>
+        <field name="date_reprise_effective" readonly="1"/>
+    </group>
+
+    <!-- Tableau des prolongations -->
+    <field name="prolongation_ids">
+        <list editable="bottom" string="Liste des prolongations">
+            <field name="date_debut"/>
+            <field name="date_fin"/>
+            <field name="nb_jours" readonly="1"/>
+        </list>
+        <form string="Prolongation">
+            <group col="2" class="bg-info text-white p-2 rounded">
+                <field name="date_debut"/>
+                <field name="date_fin"/>
+                <field name="nb_jours" readonly="1"/>
+            </group>
+        </form>
+    </field></group>
+</page>
+
+
+
+
+                           <page string="Administratif / Financier" name="administratif_financier">
+    <!-- Bloc 1 -->
+    <!-- Ligne 1 -->
+    <group col="2" class="bg-secondary p-2 rounded">
+        <group>
+            <group>
+                <field name="numero_dossier" readonly="1"/>
+            </group>
+            <group>
+                <field name="organisme_assurance_id" readonly="1"/>
+            </group>
+            <group>
+                <field name="assurance_declaree" readonly="1"/>
+            </group>
+        </group>
+
+        <!-- Ligne 2 -->
+        <group>
+            <group>
+                <field name="declare_par"/>
+            </group>
+            <group>
+                <field name="date_declaration"/>
+            </group>
+        </group>
+
+        <!-- Ligne 3 -->
+        <group>
+            <group>
+                <field name="pv_police" widget="binary"/>
+            </group>
+            <group/>
+        </group>
+
+        <!-- Bloc 2 -->
+        <!-- Ligne 4 -->
+        <group>
+            <group>
+                <field name="cout_estime"/>
+            </group>
+            <group>
+                <field name="remboursement"/>
+            </group>
+        </group>
+
+        <!-- Ligne 5 -->
+        <group>
+            <group>
+                <field name="montant_avance"/>
+            </group>
+            <group>
+                <field name="mode_paiement"/>
+            </group>
+        </group>
+
+        <!-- Ligne 6 -->
+        <group>
+            <group>
+                <field name="reglement_global"/>
+            </group>
+            <group>
+                <field name="montant_regle"/>
+            </group>
+            <group>
+                <field name="montant_indemnisation"/>
+            </group>
+        </group>
+
+        <!-- Ligne 7 -->
+        <group>
+            <group>
+                <field name="mode_reglement"/>
+            </group>
+            <group/>
+        </group>
+
+        <!-- Bloc 3 : Nouveaux champs calculés -->
+        <!-- Ligne 8 -->
+        <group string="Synthèse Financière" col="2" class="bg-light p-2 rounded">
+            <group>
+                <field name="prise_en_charge_assurance" readonly="1"/>
+            </group>
+            <group>
+                <field name="reste_a_charge_entreprise" readonly="1"/>
+            </group>
+            <group>
+                <field name="reste_a_regler" readonly="1"/>
+            </group>
+            <group>
+                <field name="ecart_cout" readonly="1"/>
+            </group>
+        </group>
+    </group>
+</page>
+
+                           <page string="illustration">
+                           <group>
+                                <field name="partie_corps"/>
+                           </group>
+                           </page>
+
+
+                          <page string="RH / Responsables">
+    <!-- Ligne 1 -->
+    <group>
+        <group>
+            <field name="responsable_id"/>
+        </group>
+        <group>
+           <field name="date_validation" readonly="1"/>
+        </group>
+    </group>
+
+    <!-- Ligne 2 -->
+    <group>
+        <group>
+            <field name="valide_par" readonly="1"/>
+        </group>
+        <group>
+            <field name="service_id"/>
+        </group>
+    </group>
+
+    <!-- Ligne 3 -->
+    <group>
+        <group>
+            <field name="poste_occupe"/>
+        </group>
+        <group>
+            <field name="anciennete"/>
+        </group>
+    </group>
+
+    <!-- Bloc Commentaires / Documents -->
+    <!-- Ligne 4 -->
+    <group string="Commentaires / Documents">
+        <group>
+            <field name="commentaire" widget="text"/>
+        </group>
+        <group>
+            <field name="documents" widget="binary"/>
+        </group>
+    </group>
+
+    <!-- Ligne 5 -->
+    <group>
+        <group>
+            <field name="responsable_securite_id"/>
+        </group>
+        <group/>
+    </group>
+</page>
+
+
+<page string="Autres informations">
+    <!-- Bloc 1 -->
+    <!-- Ligne 1 -->
+    
+    <!-- Ligne 2 -->
+    <group>
+        <group>
+            <field name="refuse_par" readonly="1"/>
+        </group>
+        <group>
+            <field name="date_Refus_Accident" readonly="1"/>
+        </group>
+    </group>
+    <!-- Ligne 3 -->
+    <group>
+        
+        <group>
+            <field name="declare_par" readonly="1" />
+        </group>
+         <group>
+            <field name="date_Assurance_Accident" readonly="1"/>
+        </group>
+        <group/>
+    </group>
+
+</page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_accident_tr_kanban" model="ir.ui.view">
+    <field name="name">accident.travail.kanban</field>
+    <field name="model">accident.travail</field>
+    <field name="arch" type="xml">
+        <kanban default_group_by="statutNouv" class="o_kanban_mobile">
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div class="o_kanban_image">
+                            <field name="employe_id" widget="many2one_avatar_user"/>
+                        </div>
+                        <div class="oe_kanban_details">
+                            <strong><field name="name"/></strong>
+                            <div>
+                                <b>Date:</b> <field name="date_accident"/> 
+                                <b>Heure:</b> <field name="heure_accident"/>
+                            </div>
+                            <div><b>Lieu:</b> <field name="lieu_accident"/></div>
+                            <div><b>Gravité:</b> <field name="gravite"/></div>
+                            <div><b>Statut:</b> <field name="statutNouv" widget="statusbar"/></div>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+
+        <!-- Action pour menu -->
+        <record id="accident_action" model="ir.actions.act_window">
+            <field name="name">Accidents de Travail</field>
+            <field name="res_model">accident.travail</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Aucun accident enregistré pour le moment, cliquez sur "Créer" pour ajouter.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

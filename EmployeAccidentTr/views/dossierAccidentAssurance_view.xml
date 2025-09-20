@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Liste des dossiers d'assurance -->
+        <record id="view_dossier_accident_assurance_list" model="ir.ui.view">
+            <field name="name">dossier.accident.assurance.list</field>
+            <field name="model">dossier.accident.assurance</field>
+            <field name="arch" type="xml">
+                <list string="Dossiers Accident Assurance" default_order="date_creation desc">
+                    <field name="name"/>
+                    <field name="date_creation"/>
+                    <field name="date_declaration_assurance"/>
+                    <field name="statut" widget="badge"
+                           options="{'color_map': {
+                               'valide': 'success',
+                               'refuse': 'danger',
+                               'cloture': 'info'
+                           }}"/>
+                    <field name="organisme_assurance_id"/>
+                    <field name="contact_assurance_id"/>
+                    <field name="numero_police"/>
+                    <field name="montant_indemnisation"/>
+                    <field name="total_accidents"/>
+                    <field name="montant_total_accidents"/>
+                    <field name="responsable"/>
+                    <field name="date_validation"/>
+                    <field name="date_cloture"/>
+                    <button name="action_valider" type="object" string="Valider" class="btn-primary"/>
+                    <button name="action_cloturer" type="object" string="Cloturer" class="btn-success"/>
+                    <button name="action_refuser" type="object" string="Refuser" class="btn-danger"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Formulaire dossier -->
+        <record id="view_dossier_accident_assurance_form" model="ir.ui.view">
+            <field name="name">dossier.accident.assurance.form</field>
+            <field name="model">dossier.accident.assurance</field>
+            <field name="arch" type="xml">
+                <form string="Dossier Accident Assurance">
+                    <header>
+                        <button name="action_valider" type="object" string="Valider" class="btn-primary"/>
+                        <button name="action_cloturer" type="object" string="Cloturer" class="btn-success"/>
+                        <button name="action_refuser" type="object" string="Refuser" class="btn-danger"/>
+                        <!-- On n'affiche que 3 statuts -->
+                        <field name="statut" widget="statusbar" statusbar_visible="valide,refuse,cloture"/>
+                    </header>
+                    <sheet>
+                        <group string="Informations principales">
+                            <group>
+                                <field name="name"/>
+                                <field name="date_creation" readonly="1"/>
+                                <field name="date_declaration_assurance" readonly="1"/>
+                                <field name="date_cloture" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="organisme_assurance_id"/>
+                                <!-- Filtrage des contacts par organisme -->
+<field name="contact_assurance_id" domain="[('organisme_id','=',organisme_assurance_id)]"/>
+                                <field name="numero_police"/>
+                                <field name="montant_indemnisation"/>
+                                <field name="commentaires"/>
+                            </group>
+                        </group>
+
+                        <group string="Synthèse" colspan="2">
+                            <group>
+                                <field name="total_accidents" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="montant_total_accidents" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Accidents"><group class="bg-secondary p-2 rounded">
+    <group>
+        <!-- Bloc pour ajouter un accident -->
+        <field name="accidents_selection_ids"
+               widget="many2many_tags"
+               domain="[('statutNouv','=','valide'),('dossier_id','=',False),('assurance_declaree','=',False)]"
+               placeholder="Rechercher un accident valide non déclaré..." />
+        <button name="action_ajouter_accidents" type="object" string="Ajouter au dossier" class="btn-primary"/>
+    </group>
+
+    <separator string="Accidents liés"/>
+
+    <!-- Bloc liste des accidents liés -->
+    <field name="accidents_ids">
+        <list editable="bottom" string="Accidents liés" class="o_list_table table-striped table-hover table-sm">
+            <field name="accident_code"/>
+            <field name="name"/>
+            <field name="date_accident"/>
+            <field name="employe_id"/>
+            <field name="lieu_accident"/>
+            <field name="gravite"/>
+            <field name="montant_indemnisation"/>
+            <field name="assurance_declaree"/>
+            <field name="statutNouv" widget="badge"
+                   options="{'color_map': {
+                       'en_cours': 'warning',
+                       'valide': 'success',
+                       'refuse': 'danger'
+                   }}"/>
+        </list>
+    </field></group>
+</page>
+
+                            <page string="Suivi / Validation" class="bg-light p-2 rounded">
+    <group col="2" class="bg-info text-white p-2 rounded">
+        
+        <!-- Ligne 1 -->
+        <group>
+            <field name="responsable" readonly="1"/>
+        </group>
+        <group>
+            <field name="valide_par" readonly="1"/>
+        </group>
+
+        <!-- Ligne 2 -->
+        <group>
+            <field name="date_validation" readonly="1"/>
+        </group>
+        <group>
+            <field name="cloture_par" readonly="1"/>
+        </group>
+
+        <!-- Ligne 3 -->
+        <group>
+            <field name="date_cloture" readonly="1"/>
+        </group>
+        <group>
+            <field name="refuse_par" readonly="1"/>
+        </group>
+
+        <!-- Ligne 4 -->
+        <group>
+            <field name="date_refus" readonly="1"/>
+        </group>
+        <group>
+            <field name="notes_suivi" widget="text"/>
+        </group>
+
+    </group>
+</page>
+
+
+                            <page string="Employés / Entreprise">
+                                <group>
+                                    <field name="employe_ids" widget="many2many_tags"/>
+                                    <field name="entreprise_id"/>
+                                </group>
+                            </page>
+
+                            <page string="Documents" class="bg-secondary p-2 rounded">
+                                <field name="documents_ids" widget="many2many_binary"/>
+                            </page>
+                            <page string="Refus / Motif">
+    <group class="bg-warning p-2 rounded">
+        <field name="Motif_temp" placeholder="Saisir le motif avant validation"/>
+        <field name="Motif_refus" readonly="1"/>
+    </group>
+</page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Kanban Dossiers -->
+        <record id="view_dossier_accident_assurance_kanban" model="ir.ui.view">
+            <field name="name">dossier.accident.assurance.kanban</field>
+            <field name="model">dossier.accident.assurance</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="statut">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div>
+                                    <strong><field name="name"/></strong>
+                                </div>
+                                <div>
+                                    <b>Organisme :</b> <field name="organisme_assurance_id"/>
+                                </div>
+                                <div>
+                                    <b>Contact :</b> <field name="contact_assurance_id"/>
+                                </div>
+                                <div>
+                                    <b>Police :</b> <field name="numero_police"/>
+                                </div>
+                                <div>
+                                    <b>Montant estimé :</b> <field name="montant_indemnisation"/>
+                                </div>
+                                <div>
+                                    <b>Total accidents :</b> <field name="total_accidents"/>
+                                </div>
+                                <div>
+                                    <b>Montant total :</b> <field name="montant_total_accidents"/>
+                                </div>
+                                <div>
+                                    <b>Statut :</b> <field name="statut" widget="statusbar"/>
+                                </div>
+                                <div>
+                                    <b>Créé le :</b> <field name="date_creation"/>
+                                </div>
+                                <div>
+                                    <b>Déclaré le :</b> <field name="date_declaration_assurance"/>
+                                </div>
+                                <div>
+                                    <b>Clôturé le :</b> <field name="date_cloture"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Action menu -->
+        <record id="action_assurance_accident" model="ir.actions.act_window">
+            <field name="name">Dossiers Accident Assurance</field>
+            <field name="res_model">dossier.accident.assurance</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Aucun dossier enregistré pour le moment, cliquez sur "Créer" pour ajouter.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

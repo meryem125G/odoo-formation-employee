@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_accident_travail_user,access_accident_travail_user,model_accident_travail,,1,1,1,1
+access_assurance_contact_user,access_assurance_contact_user,model_assurance_contact,,1,1,1,1
+access_assurance_organisme_user,access_assurance_organisme_user,model_assurance_organisme,,1,1,1,1
+access_dossier_accident_assurance_user,access_dossier_accident_assurance_user,model_dossier_accident_assurance,,1,1,1,1
+access_accident_travail_prolongation_user,access_accident_travail_prolongation_user,model_accident_travail_prolongation,,1,1,1,1

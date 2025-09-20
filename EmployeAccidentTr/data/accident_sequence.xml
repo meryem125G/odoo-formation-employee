@@ -1,0 +1,12 @@
+<odoo>
+    <data noupdate="1">
+        <record id="seq_accident_travail" model="ir.sequence">
+            <field name="name">Accident de Travail</field>
+            <field name="code">accident.travail</field>
+            <field name="prefix">ACD</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+    </data>
+</odoo>

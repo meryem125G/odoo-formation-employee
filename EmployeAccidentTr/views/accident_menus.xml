@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Menu racine -->
+        <menuitem 
+            id="root_menu"
+            name="Accidents de Travail"
+            web_icon="EmployeAccidentTr,static/description/icon.png"/>
+
+        <!-- Sous-menu Accidents -->
+        <menuitem
+            id="accident_menu"
+            name="Liste des accidents"
+            parent="root_menu"
+            action="accident_action"
+            sequence="10"/>
+
+        <menuitem
+            id="accident_assurance"
+            name="Organismes d'assurances"
+            parent="root_menu"
+            action="action_assurance"
+            sequence="20"/> 
+
+        <menuitem
+            id="accident_assurance_contact"
+            name="Contacts Assurances"
+            parent="root_menu"
+            action="action_contact"
+            sequence="30"/>    
+        
+        <menuitem
+            id="accident_assurance_accident"
+            name="Dossiers Accidents/Assurances"
+            parent="root_menu"
+            action="action_assurance_accident"
+            sequence="40"/>    
+
+    </data>
+</odoo>
