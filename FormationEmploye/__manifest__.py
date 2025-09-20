@@ -3,15 +3,21 @@
     'name': "Formation Employé",
     'version': "1.0",
     'category': "Human Resources",
-    'summary': "Gestion des formations des employés",
+    'summary': "Gestion complète des formations des employés",
     'description': """
-        Ce module permet de gérer les formations suivies par les employés,
-        avec suivi administratif, planification et analyse des compétences.
-    """,
-    'author': "Votre Nom",
-    'website': "http://www.votresite.com",
-    'depends': ['base', 'hr', 'mail'],
+Gestion des formations des employés :
+- Planification des sessions de formation
+- Suivi administratif des participants
+- Suivi des compétences et indicateurs (KPI)
+- Gestion des formateurs et organismes
+- Organisation par thèmes et modules
+- Analyse et reporting
+""",
+    'author': "Meravox",
+    'website': "http://www.meravox.com",
+    'depends': ['base', 'hr', 'mail', 'calendar'],
     'data': [
+        'security/ir.model.access.csv',
         'views/formation_views.xml',
         'views/dossier_giac_view.xml',
         'views/formationOrganisme_views.xml',
@@ -19,14 +25,9 @@
         'views/formationTheme.xml',
         'views/ThemeModule.xml',
         'views/departement_view.xml',
-
-
-
-
         'views/formation_menus.xml',
-        'security/ir.model.access.csv',
     ],
-     'assets': {
+    'assets': {
         'web.assets_backend': [
             'FormationEmploye/static/src/css/formation_styles.css',
         ],
