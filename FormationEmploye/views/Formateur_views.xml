@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Liste -->
+        <record id="view_formation_formateur_list" model="ir.ui.view">
+            <field name="name">formation.formateur.list</field>
+            <field name="model">formation.formateur</field>
+            <field name="arch" type="xml">
+                <list string="Formateurs" default_order="name asc"
+                      decoration-success="disponibilite == 'disponible'"
+                      decoration-warning="disponibilite == 'occupe'"
+                      decoration-danger="disponibilite == 'indisponible'">
+                    <field name="name"/>
+                    <field name="type_formateur"/>
+                    <field name="organisme_id"/>
+                    <field name="domaine"/>
+                    <field name="experience"/>
+                    <field name="tarif_journalier"/>
+                    <field name="disponibilite" widget="badge"
+                           options="{'color_map': {
+                               'disponible': 'success',
+                               'occupe': 'warning',
+                               'indisponible': 'danger'
+                           }}"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form -->
+        <record id="view_formation_formateur_form" model="ir.ui.view">
+            <field name="name">formation.formateur.form</field>
+            <field name="model">formation.formateur</field>
+            <field name="arch" type="xml">
+                <form string="Formateur">
+                    <header>
+                        
+                    </header>
+
+                    <sheet>
+                        <group>
+        <field name="name"/>
+    </group>
+
+                        <group>
+                            <group>
+                                <field name="disponibilite"/>
+                                <field name="type_formateur"/>
+                                <field name="organisme_id"/>
+                                <field name="fonction"/>
+                                <field name="contact_email"/>
+                                <field name="contact_phone"/>
+                                <field name="adresse"/>
+                            </group>
+                            <group>
+                                <field name="domaine"/>
+                                <field name="experience"/>
+                                <field name="diplome"/>
+                                <field name="certifications"/>
+                                <field name="photo" widget="image"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Infos administratives">
+                                <group>
+                                    <group>
+                                        <field name="cin"/>
+                                        <field name="cv_document"/>
+                                    </group>
+                                    <group>
+                                        <field name="certification_giac"/>
+                                        <field name="num_agrement_giac"/>
+                                        <field name="date_agrement"/>
+                                        <field name="date_expiration_agrement"/>
+                                        <field name="documents_giac"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page string="Modules">
+    <field name="module_ids" widget="many2many_tags">
+        <list editable="bottom">
+            <field name="name"/>
+        </list>
+    </field>
+</page>
+
+                            <page string="Tarification">
+                                <group>
+                                    <field name="tarif_horaire"/>
+                                    <field name="tarif_journalier"/>
+                                    <field name="devise_id"/>
+                                </group>
+                            </page>
+
+                            <page string="Formations animées">
+                                <field name="formation_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="date_debut"/>
+                                        <field name="date_fin"/>
+                                        <field name="statut"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            <page string="Notes">
+                                <field name="note" widget="text"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Kanban -->
+        <record id="view_formation_formateur_kanban" model="ir.ui.view">
+            <field name="name">formation.formateur.kanban</field>
+            <field name="model">formation.formateur</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="disponibilite" class="o_kanban_mobile">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <field name="photo" widget="image" class="oe_avatar"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong><field name="name"/></strong>
+                                    <div><b>Type:</b> <field name="type_formateur"/></div>
+                                    <div><b>Organisme:</b> <field name="organisme_id"/></div>
+                                    <div><b>Domaine:</b> <field name="domaine"/></div>
+                                    <div><b>Expérience:</b> <field name="experience"/> ans</div>
+                                    <div><b>Statut:</b> <field name="disponibilite" widget="statusbar"/></div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="formateur_action" model="ir.actions.act_window">
+            <field name="name">Formateurs</field>
+            <field name="res_model">formation.formateur</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Aucun formateur enregistré. Cliquez sur <b>"Créer"</b> pour ajouter un formateur.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

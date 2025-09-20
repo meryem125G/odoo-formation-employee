@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Menu racine -->
+        <menuitem 
+            id="root_menu"
+            name="Formation des Employés"
+            web_icon="FormationEmploye,static/description/icon.png"/>
+
+        <!-- Sous-menus en dropdown -->
+        <menuitem
+            id="formation_menu_list"
+            name="Liste des formations"
+            parent="root_menu"
+            action="formation_action"
+            sequence="10"/>
+       
+        <!-- Menu Dossier GIAC -->
+        <menuitem
+            id="formation_menu_dossier_giac"
+            name="Dossiers GIAC"
+            parent="root_menu"
+            action="giac_action"
+            sequence="20"/>
+
+        <menuitem
+            id="formation_formateur"
+            name="Formateurs"
+            parent="root_menu"
+            action="formateur_action"
+            sequence="30"/>
+        <menuitem
+            id="formation_Organisme"
+            name="Organismes de formateurs"
+            parent="root_menu"
+            action="organisme_action"
+            sequence="40"/>
+
+         <menuitem
+            id="formation_Theme"
+            name="Themes de formations"
+            parent="root_menu"
+            action="formation_theme_action"
+            sequence="50"/>
+
+        <menuitem
+            id="formation_Module"
+            name="Modules des Themes"
+            parent="root_menu"
+            action="formation_module_action"
+            sequence="60"/>
+
+        <menuitem
+            id="formation_Departement"
+            name="Départements"
+            parent="root_menu"
+            action="formation_departement_action"
+            sequence="70"/>
+
+    </data>
+</odoo>

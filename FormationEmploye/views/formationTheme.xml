@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ================= LISTE ================= -->
+        <record id="view_formation_theme_list" model="ir.ui.view">
+            <field name="name">formation.theme.list</field>
+            <field name="model">formation.theme</field>
+            <field name="arch" type="xml">
+                <list string="Thèmes de formation" default_order="name asc"
+                      decoration-success="certification"
+                      decoration-danger="not actif">
+                    <field name="name"/>
+                    <field name="domaine"/>
+                    <field name="niveau"/>
+                    <field name="langue"/>
+                    <field name="nombre_modules"/>
+                    <field name="duree_totale_theme"/>
+                    <field name="responsable_id"/>
+                    <field name="date_Creation"/>
+                    <field name="actif" widget="boolean_toggle"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- ================= FORMULAIRE ================= -->
+        <record id="view_formation_theme_form" model="ir.ui.view">
+            <field name="name">formation.theme.form</field>
+            <field name="model">formation.theme</field>
+            <field name="arch" type="xml">
+                <form string="Thème de formation">
+                    <header>
+                    <field name="actif" widget="boolean_toggle"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+    <div>
+        <label for="name"/>
+        <field name="name" nolabel="1"/>
+    </div>
+    <div>
+        <label for="domaine"/>
+        <field name="domaine" nolabel="1"/>
+    </div>
+</div>
+
+
+                        <group>
+                            <group>
+                                <field name="langue"/>
+                                <field name="niveau"/>
+                                <field name="responsable_id"/>
+                                <field name="certification"/>
+
+                            </group>
+                            <group>
+                                <field name="duree_totale_theme"/>
+
+                                <field name="date_Creation" readonly="1"/>
+                                <field name="date_Modification" readonly="1"/>
+                                <field name="actif"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Description">
+                                <group>
+                                    <field name="description"/>
+                                    <field name="objectif"/>
+                                    <field name="objectifs_mesurables"/>
+                                </group>
+                            </page>
+<page string="Logistique">
+    <group>
+        <div class="bg-info p-2 rounded">
+            <group>
+                <group>
+                    <field name="lieu"/>
+                    <field name="capacite_max"/>
+                </group>
+                <group>
+                    <field name="public_cible"/>
+                    <field name="prerequis"/>
+                </group>
+            </group>
+
+            <group>
+                <group>
+                    <field name="methode_pedagogique"/>
+                </group>
+                <group>
+                    <field name="support_cours" filename="support_nom"/>
+                </group>
+            </group>
+        </div>
+    </group>
+</page>
+
+
+
+                            <page string="Modules associés">
+                                <field name="module_ids">
+                                    <list editable="bottom">
+                                        <field name="name"/>
+                                        <field name="formateur_ids"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            
+                           <page string="Indicateurs et KPI">
+    <group>
+        <group>
+            <field name="nombre_modules" readonly="1"/>
+            <field name="duree_totale_theme" readonly="1"/>
+        </group>
+        <group>
+            <field name="taux_satisfaction"/>
+            <field name="nb_participants"/>
+        </group>
+        <group>
+            <field name="cout_moyen"/>
+        </group>
+    </group>
+</page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- ================= KANBAN ================= -->
+        <record id="view_formation_theme_kanban" model="ir.ui.view">
+            <field name="name">formation.theme.kanban</field>
+            <field name="model">formation.theme</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="domaine" class="o_kanban_mobile">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <field name="support_cours" widget="image"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong><field name="name"/></strong>
+                                    <div><b>Domaine :</b> <field name="domaine"/></div>
+                                    <div><b>Niveau :</b> <field name="niveau"/></div>
+                                    <div><b>Langue :</b> <field name="langue"/></div>
+                                    <div><b>Modules :</b> <field name="nombre_modules"/></div>
+                                    <div><b>Durée :</b> <field name="duree_totale_theme"/> h</div>
+                                    <div><b>Responsable :</b> <field name="responsable_id"/></div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- ================= ACTION ================= -->
+        <record id="formation_theme_action" model="ir.actions.act_window">
+            <field name="name">Thèmes de formation</field>
+            <field name="res_model">formation.theme</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Aucun thème enregistré. Cliquez sur <b>"Créer"</b> pour ajouter un thème de formation.
+                </p>
+            </field>
+        </record>
+
+       
+
+    </data>
+</odoo>

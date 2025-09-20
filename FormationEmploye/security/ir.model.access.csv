@@ -1,0 +1,25 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_formation_employe_user,formation.employe user,model_formation_employe,base.group_user,1,1,1,1
+access_formation_employe_manager,formation.employe manager,model_formation_employe,hr.group_hr_manager,1,1,1,1
+access_formation_giac_user,formation.giac user,model_formation_giac,base.group_user,1,1,1,1
+
+access_formation_formateur_user,formation.formateur user,model_formation_formateur,base.group_user,1,0,0,0
+access_formation_formateur_manager,formation.formateur manager,model_formation_formateur,hr.group_hr_manager,1,1,1,1
+
+access_formation_organisme_user,formation.organisme user,model_formation_organisme,base.group_user,1,0,0,0
+access_formation_organisme_manager,formation.organisme manager,model_formation_organisme,hr.group_hr_manager,1,1,1,1
+
+access_formation_module_user,formation.module user,model_formation_module,base.group_user,1,0,0,0
+access_formation_module_manager,formation.module manager,model_formation_module,hr.group_hr_manager,1,1,1,1
+
+access_formation_theme_user,formation.theme user,model_formation_theme,base.group_user,1,0,0,0
+access_formation_theme_manager,formation.theme manager,model_formation_theme,hr.group_hr_manager,1,1,1,1
+
+access_formation_employe_module_line_user,formation.employe.module.line user,model_formation_employe_module_line,base.group_user,1,0,0,0
+access_formation_employe_module_line_manager,formation.employe.module.line manager,model_formation_employe_module_line,hr.group_hr_manager,1,1,1,1
+
+access_formation_departement_user,formation.departement user,model_formation_departement,base.group_user,1,0,0,0
+access_formation_departement_manager,formation.departement manager,model_formation_departement,hr.group_hr_manager,1,1,1,1
+
+access_formateurs_modules_line_user,formateurs.modules.line user,model_formation_employe_module_line,base.group_user,1,0,0,0
+access_formateurs_modules_line_manager,formateurs.modules.line manager,model_formation_employe_module_line,hr.group_hr_manager,1,1,1,1

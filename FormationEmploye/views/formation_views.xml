@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- VUE LISTE -->
+        <record id="view_formation_list" model="ir.ui.view">
+            <field name="name">formation.employe.list</field>
+            <field name="model">formation.employe</field>
+            <field name="arch" type="xml">
+                <list string="Formations des Employés" default_order="date_debut desc">
+                    <field name="name"/>
+                    <field name="theme_id"/>
+                    <field name="type_formation"/>
+                    <field name="priorite"/>
+                    <field name="lieu"/>
+                    <field name="date_debut"/>
+                    <field name="date_fin"/>
+                    <field name="duree"/>
+                    <field name="statut"/>
+                    <field name="date_validation"/>
+                    <field name="valide_par"/>
+                    <field name="declare_giac"/>
+                    <field name="avancement"/>
+                    <button name="action_valider" type="object" string="Valider" class="btn-primary"/>
+                    <button name="action_terminer" type="object" string="Terminer" class="btn-success"/>
+                    <button name="action_annuler" type="object" string="Annuler" class="btn-warning"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- VUE FORMULAIRE -->
+        <record id="view_formation_form" model="ir.ui.view">
+            <field name="name">formation.employe.form</field>
+            <field name="model">formation.employe</field>
+            <field name="arch" type="xml">
+                <form string="Formation Employé" class="o_form_full_width">
+                    <header>
+                        <button name="action_valider" type="object" string="Valider" class="btn-primary"/>
+                        <button name="action_terminer" type="object" string="Terminer" class="btn-success"/>
+                        <button name="action_annuler" type="object" string="Annuler" class="btn-warning"/>
+                        <field name="statut" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <!-- Informations générales -->
+                        <group string="Informations générales">
+                            <group>
+                                <field name="name"/>
+                                <field name="employe_ids" widget="many2many_tags"/>
+                            </group>
+                            <group>
+                                <field name="type_formation"/>
+                                <field name="niveau"/>
+<field name="departement_id"/>
+<field name="theme_id"/>
+
+                                <field name="priorite"/>
+                                <field name="lieu"/>
+                            </group>
+                            <group>
+                                <field name="date_debut"/>
+                                <field name="date_fin" readonly="1"/>
+                                <field name="duree_Jours" readonly="1"/>
+                                <field name="duree" readonly="1"/>
+                                <field name="budget_alloue"/>
+                                <field name="cout" readonly="1"/>
+                                <field name="autres_frais"/>
+                            </group>
+                        </group>
+
+                        <!-- Notebook pour détails -->
+                        <notebook>
+                            <!-- Description / Objectifs -->
+                            <page string="Description / Objectifs">
+                                <group>
+                                    <field name="description"/>
+                                    <field name="competences_acquises"/>
+                                    <field name="impact_formation"/>
+                                    <field name="plan_action_post_formation"/>
+                                </group>
+                            </page>
+
+                            <!-- Suivi / Validation -->
+                           <page string="Suivi / Validation">
+    <group>
+        <group>
+            <field name="responsable_id"/>
+            <field name="notes_internes"/>
+        </group>
+        <group>
+            <field name="valide_par" readonly="1"/>
+            <field name="date_validation" readonly="1"/>
+        </group>
+        <group>
+            <field name="reference"/>
+            <field name="numero_demande"/>
+        </group>
+        <group>
+            <field name="date_demande"/>
+            <field name="type_budget"/>
+        </group>
+        <group>
+            <field name="date_notification"/>
+        </group>
+    </group>
+</page>
+
+
+                            <!-- Évaluation -->
+                            <page string="Évaluation">
+                                <group>
+                                    <field name="evaluation"/>
+                                    <field name="score"/>
+                                    <field name="commentaires"/>
+                                </group>
+                            </page>
+
+                            <!-- Documents -->
+                           <page string="Documents">
+    <group>
+        <group>
+            <field name="certificate"/>
+            <field name="programme"/>
+        </group>
+        <group>
+            <field name="supports"/>
+            <field name="rapport_formation"/>
+        </group>
+        <group>
+            <field name="document_giac"/>
+        </group>
+    </group>
+</page>
+
+
+<page string="Formateurs et Modules" class="bg-primary text-white">
+   <field name="module_line_ids">
+    <list editable="bottom" string="Modules et Formateurs"
+      class="o_list_table table-striped table-hover table-sm">
+
+           <!-- Bleu clair doux et texte sombre -->
+        <field name="theme_id" readonly="1" string="Thème"/>
+        <field name="module_id" domain="[('id','in',module_domain_ids)]" string="Module"/>
+        <field name="formateur_ids" widget="many2many_tags" domain="[('id','in',formateur_domain_ids)]" string="Formateurs"/>
+        <field name="duree" string="Durée (h)"/>
+        <field name="tarif_modules" string="Tarif Module (MAD)"/>
+        <field name="tarif_formateurs" string="Tarif Formateur (MAD)"/>
+    </list>
+</field>
+    <group string="Totaux" col="2" class="bg-info text-white p-2 rounded">
+    <group col="2">
+        <field name="total_tarif_modules" string="Total Modules (MAD)"/>
+        <field name="total_tarif_formateurs" string="Total Formateurs (MAD)"/>
+    </group>
+    <group col="2">
+        <field name="budget_reel_modules" string="Total Selon modules + Les autres Frais"/>
+        <field name="budget_reel_formateurs" string="Total Selon formateurs + Les autres Frais"/>
+    </group>
+    <group col="2">
+        <field name="budget_modules_ok" string="Comparaison entre Budget Alloue et total Modules"/>
+        <field name="budget_formateurs_ok" string="Comparaison entre Budget Alloue et total Formateurs"/>
+    </group>
+    <group col="2">
+        <field name="marge_formateurs" string="Marge formateurs"/>
+        <field name="marge_modules" string="Marge modules"/>
+    </group>
+    <group col="2">
+        <field name="marge_totale" string="Marge totale"/>
+    </group>
+</group>
+
+</page>
+                            <!-- Avancement -->
+                            <page string="Avancement">
+                                <field name="avancement"/>
+                            </page>
+                          <page string="Autres infos" class="bg-info text-white p-2 rounded">
+    <group class="bg-secondary p-2 rounded">
+        <group>
+            <field name="date_annulation" readonly="1"/>
+            <field name="annule_par" readonly="1"/>
+        </group>
+        <group>
+            <field name="date_fin" readonly="1"/>
+            <field name="termine_par" readonly="1"/>
+        </group>
+    </group>
+</page>
+
+
+
+                            <!-- GIAC -->
+                            <page string="GIAC">
+    <group>
+        <group>
+            <field name="declare_giac" readonly="1"/>
+            <field name="giac_eligibilite" readonly="1"/>
+        </group>
+        <group>
+            <field name="giac_reference" readonly="1"/>
+            <field name="giac_statut" readonly="1"/>
+        </group>
+        <group>
+            <field name="giac_budget_accorde" readonly="1"/>
+            <field name="giac_budget_demande" readonly="1"/>
+        </group>
+        <group>
+            <field name="giac_date_demande" readonly="1"/>
+            <field name="giac_date_validation" readonly="1"/>
+        </group>
+        <group>
+            <field name="giac_date_cloture" readonly="1"/>
+            <field name="giac_organisme_agree" readonly="1"/>
+        </group>
+        <group>
+            <field name="giac_contact_responsable" readonly="1"/>
+            <field name="giac_programme_valide" readonly="1"/>
+        </group>
+        <group>
+            <field name="giac_observations" readonly="1"/>
+            <field name="giac_commentaires_comite" readonly="1"/>
+        </group>
+        <group>
+            <field name="responsable_giac_id" readonly="1"/>
+            <field name="date_soumission"/>
+        </group>
+        <group>
+            <field name="date_notification"/>
+            <field name="date_rapport_envoye"/>
+        </group>
+    </group>
+</page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- VUE KANBAN -->
+        <record id="view_formation_kanban" model="ir.ui.view">
+            <field name="name">formation.employe.kanban</field>
+            <field name="model">formation.employe</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="statut" class="o_kanban_mobile">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                
+                                <div class="oe_kanban_details">
+                                    <strong><field name="name"/></strong>
+                                    <div><b>Début:</b> <field name="date_debut"/> - <b>Fin:</b> <field name="date_fin"/></div>
+                                    <div><b>Lieu:</b> <field name="lieu"/></div>
+                                    <div><b>Type:</b> <field name="type_formation"/></div>
+                                    <div><b>Statut:</b> <field name="statut"/></div>
+                                    <div><b>GIAC:</b> <field name="declare_giac"/></div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- ACTION -->
+        <record id="formation_action" model="ir.actions.act_window">
+            <field name="name">Formations des Employés</field>
+            <field name="res_model">formation.employe</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Aucune formation pour le moment, cliquez sur "Créer" pour ajouter.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

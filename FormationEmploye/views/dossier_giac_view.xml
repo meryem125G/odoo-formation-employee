@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- VUE LISTE -->
+<record id="view_giac_list" model="ir.ui.view">
+    <field name="name">formation.giac.list</field>
+    <field name="model">formation.giac</field>
+    <field name="arch" type="xml">
+        <list string="Dossiers GIAC" default_order="creation_date desc">
+            <field name="giac_reference"/>
+            <field name="formation_ids" widget="many2many_tags"/>
+            <field name="giac_statut"/>
+            <field name="giac_budget_accorde"/>
+            <field name="responsable_giac_id"/>
+            <field name="giac_date_validation"/>
+            <field name="avancement"/>
+            <button name="action_valider" type="object" string="Valider" class="btn-success"/>
+            <button name="action_refuser" type="object" string="Refuser" class="btn-warning"/>
+            <button name="action_cloturer" type="object" string="Clôturer" class="btn-secondary"/>
+        </list>
+    </field>
+</record>
+
+<!-- VUE FORMULAIRE -->
+<record id="view_giac_form" model="ir.ui.view">
+    <field name="name">formation.giac.form</field>
+    <field name="model">formation.giac</field>
+    <field name="arch" type="xml">
+        <form string="Dossier GIAC" class="o_form_full_width">
+            <header>
+                <button name="action_valider" type="object" string="Valider" class="btn-success"/>
+                <button name="action_refuser" type="object" string="Refuser" class="btn-warning"/>
+                <button name="action_cloturer" type="object" string="Clôturer" class="btn-secondary"/>
+                <field name="giac_statut" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group string="Informations générales">
+                    <field name="formation_ids" widget="many2many_tags"/>
+                    <field name="giac_reference"/>
+                    <field name="giac_contact_responsable"/>
+                    <field name="responsable_giac_id"/>
+                    <field name="creation_date" readonly="1"/>
+                </group>
+
+                <notebook>
+                <page string="Formations">
+                        <field name="formation_ids">
+                            <list editable="bottom">
+                                <field name="name"/>
+                                <field name="employe_ids" widget="many2many_tags"/>
+                                <field name="date_debut"/>
+                                <field name="date_fin"/>
+                                <field name="statut"/>
+                            </list>
+                        </field>
+
+                        <separator string="Sélection temporaire de formations"/>
+                        <field name="formations_selection_ids" widget="many2many_tags"/>
+
+                        <button string="Ajouter au dossier"
+                                type="object"
+                                name="action_ajouter_formations"
+                                class="btn-primary"/>
+                    </page>
+                    <page string="GIAC">
+    <group>
+       
+        <group>
+            <field name="giac_programme_valide"/>
+            <field name="giac_organisme_agree"/>
+        </group>
+<group>
+    <field name="Motif_temp" /> 
+    <field name="Motif_refus" readonly="1"/>
+</group>
+
+       
+
+        <group>
+            <field name="giac_date_demande"/>
+            <field name="giac_date_validation" readonly="1"/>
+        </group>
+        <group>
+            <field name="date_soumission"/>
+        </group>
+        <group>
+            <field name="date_notification"/>
+            <field name="giac_commentaires_comite"/>
+        </group>
+        <group>
+            <field name="giac_observations"/>
+        </group>
+    </group>
+</page>
+
+
+                    <page string="Documents">
+    <group>
+        <group>
+            <field name="document_giac"/>
+            <field name="rapport_formation"/>
+        </group>
+        <group>
+            <field name="plan_action_post_formation"/>
+            <field name="supports_annexes"/>
+        </group>
+        <group>
+            <field name="certificats"/>
+            <field name="autres_documents"/>
+        </group>
+    </group>
+</page>
+
+
+                    <page string="Évaluation et Impact">
+    <group>
+        <group>
+            <field name="evaluation"/>
+            <field name="score"/>
+        </group>
+        <group>
+            <field name="impact_formation"/>
+            <field name="competences_acquises"/>
+        </group>
+        <group>
+            <field name="retour_employe"/>
+        </group>
+    </group>
+</page>
+
+
+                   <page string="Budget et Financement">
+    <group col="2" class="bg-info text-white p-2 rounded">
+        <group>
+            <field name="giac_budget_demande"/>
+            <field name="giac_budget_accorde"/>
+        </group>
+        <group>
+            <field name="budget_initial"/>
+            <field name="budget_reel"/>
+            <field name="budget_utilise" readonly="1"/>
+            <field name="budget_restant" readonly="1"/>
+        </group>
+        <group>
+            <field name="autres_financements"/>
+            <field name="details_depenses"/>
+        </group>
+        
+        <group>
+            <field name="giac_pourcentage" readonly="1"/>
+            <field name="reste_a_charge" readonly="1"/>
+        </group>
+        <group>
+            <field name="justification_depenses"/>
+            <field name="observations_budget"/>
+        </group>
+    </group>
+</page>
+
+
+                   <page string="Avancement">
+    <group>
+        <group>
+            <field name="avancement" readonly="1"/>
+            <field name="etapes" readonly="1"/>
+        </group>
+        <group>
+            <field name="date_derniere_etape" readonly="1"/>
+        </group>
+    </group>
+</page>
+           <page string="Autres Infos">
+    <group col="2" class="bg-secondary p-2 rounded">
+        <group>
+            <field name="giac_date_validation_dossier" readonly="1"/>
+            <field name="giac_date_cloture" readonly="1"/>
+        </group>
+        <group>
+            <field name="giac_date_refus" readonly="1"/>
+            <field name="valide_par" readonly="1"/>
+        </group>
+        <group>
+            <field name="cloture_par" readonly="1"/>
+            <field name="refuse_par" readonly="1"/>
+        </group>
+    </group>
+</page>
+
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+        <!-- VUE KANBAN -->
+        <record id="view_giac_kanban" model="ir.ui.view">
+            <field name="name">formation.giac.kanban</field>
+            <field name="model">formation.giac</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="giac_statut" class="o_kanban_mobile">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <strong><field name="giac_reference"/></strong>
+                                <div><b>Formation:</b> <field name="formation_id"/></div>
+                                <div><b>Statut:</b> <field name="giac_statut"/></div>
+                                <div><b>Budget accordé:</b> <field name="giac_budget_accorde"/></div>
+                                <div><b>Avancement:</b> <field name="avancement"/>%</div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- ACTION -->
+        <record id="giac_action" model="ir.actions.act_window">
+            <field name="name">Dossiers GIAC</field>
+            <field name="res_model">formation.giac</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Aucun dossier GIAC pour le moment, cliquez sur "Créer" pour ajouter.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

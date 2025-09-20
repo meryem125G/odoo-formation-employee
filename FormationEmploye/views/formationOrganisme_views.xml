@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- LIST VIEW -->
+        <record id="view_formation_organisme_list" model="ir.ui.view">
+            <field name="name">formation.organisme.list</field>
+            <field name="model">formation.organisme</field>
+            <field name="arch" type="xml">
+                <list string="Organismes de Formation" default_order="name asc"
+                      decoration-success="statut == 'actif'"
+                      decoration-danger="statut == 'suspendu'"
+                      decoration-muted="statut == 'inactif'">
+                    <field name="logo" widget="image" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="responsable"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="ville"/>
+                    <field name="site_web"/>
+                    <field name="statut" widget="badge"
+                           options="{'color_map': {
+                               'actif': 'success',
+                               'inactif': 'secondary',
+                               'suspendu': 'danger'
+                           }}"/>
+                    <field name="evaluation_moyenne"/>
+                    <field name="taux_satisfaction"/>
+                </list>
+            </field>
+        </record>
+
+
+        <!-- FORM VIEW -->
+        <record id="view_formation_organisme_form" model="ir.ui.view">
+            <field name="name">formation.organisme.form</field>
+            <field name="model">formation.organisme</field>
+            <field name="arch" type="xml">
+                <form string="Organisme de Formation">
+                    <header>
+                        
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="logo" widget="image"/>
+                            </group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code_ref"/>
+                                <field name="responsable"/>
+                                <field name="phone"/>
+                                <field name="mobile"/>
+                                <field name="email"/>
+                                <field name="site_web"/>
+                                <field name="statut"/>
+
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Informations générales">
+                                <group>
+                                    <group>
+                                        <field name="adresse"/>
+                                        <field name="ville"/>
+                                        <field name="pays_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="fax"/>
+                                        <field name="statut_juridique"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page string="Informations légales">
+                                <group>
+                                    <group>
+                                        <field name="rc"/>
+                                        <field name="ice"/>
+                                        <field name="ifu"/>
+                                    </group>
+                                    <group>
+                                        <field name="agrement_giac"/>
+                                        <field name="num_agrement"/>
+                                        <field name="date_agrement"/>
+                                        <field name="date_expiration_agrement"/>
+                                        <field name="document_agrement"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="certifications"/>
+                                </group>
+                            </page>
+
+                            <page string="Suivi qualité">
+                                <group>
+                                    <group>
+                                        <field name="evaluation_moyenne"/>
+                                        <field name="taux_satisfaction"/>
+                                    </group>
+                                    <group>
+                                        <field name="commentaires_evaluation"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page string="Formateurs">
+                                <field name="formateur_ids">
+                                    <list editable="bottom">
+                                        <field name="name"/>
+                                        <field name="type_formateur"/>
+                                        <field name="domaine"/>
+                                        <field name="contact_email"/> <!-- Remplace 'contact' par 'email' -->
+
+                                    </list>
+                                </field>
+                            </page>
+
+                            <page string="Formations réalisées">
+                                <field name="formation_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="statut"/>
+                                        <field name="date_debut"/>
+                                        <field name="date_fin"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            <page string="Notes internes">
+                                <field name="note" widget="text"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- KANBAN VIEW -->
+        <record id="view_formation_organisme_kanban" model="ir.ui.view">
+            <field name="name">formation.organisme.kanban</field>
+            <field name="model">formation.organisme</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="statut" class="o_kanban_mobile">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <field name="logo" widget="image" class="oe_avatar"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong><field name="name"/></strong>
+                                    <div><b>Responsable :</b> <field name="responsable"/></div>
+                                    <div><b>Tél :</b> <field name="phone"/></div>
+                                    <div><b>Email :</b> <field name="email"/></div>
+                                    <div><b>Ville :</b> <field name="ville"/></div>
+                                    <div><b>Évaluation :</b> <field name="evaluation_moyenne"/></div>
+                                    <div><b>Statut :</b> <field name="statut" widget="badge"/></div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!-- ACTION -->
+        <record id="organisme_action" model="ir.actions.act_window">
+            <field name="name">Organismes de Formation</field>
+            <field name="res_model">formation.organisme</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Aucun organisme trouvé. Cliquez sur "Créer" pour ajouter un organisme de formation.
+                </p>
+            </field>
+        </record>
+
+       
+
+    </data>
+</odoo>
