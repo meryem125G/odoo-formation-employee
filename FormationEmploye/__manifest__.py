@@ -6,23 +6,20 @@
     'summary': "Gestion complète des formations des employés",
 
     'description': """
-<html>
-  <body>
-    <ul>
-      <li>Planification des sessions de formation</li>
-      <li>Suivi administratif des participants</li>
-      <li>Suivi des compétences et indicateurs (KPI)</li>
-      <li>Gestion des formateurs et organismes</li>
-      <li>Organisation par thèmes et modules</li>
-      <li>Analyse et reporting</li>
-    </ul>
-    <p>Vidéo de démonstration :</p>
-    <!--
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/TON_ID_VIDEO" frameborder="0" allowfullscreen></iframe>
-    -->
-  </body>
-</html>
+<ul>
+    <li>Planification des sessions de formation</li>
+    <li>Suivi administratif des participants</li>
+    <li>Suivi des compétences et indicateurs (KPI)</li>
+    <li>Gestion des formateurs et organismes</li>
+    <li>Organisation par thèmes et modules</li>
+    <li>Analyse et reporting</li>
+</ul>
+<p>Vidéo de démonstration :</p>
+<!--
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TON_ID_VIDEO" frameborder="0" allowfullscreen></iframe>
+-->
 """,
+
 
     'author': "Meravox",
     'website': "http://www.meravox.com",
