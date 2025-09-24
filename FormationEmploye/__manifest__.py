@@ -25,7 +25,7 @@
     'website': "http://www.meravox.com",
     'depends': ['base', 'hr', 'mail','website', 'calendar'],
     'license': 'LGPL-3',
-    'images': ['static/description/cover.png'],
+    'images': ['static/description/cover1.png'],
     'data': [
         'security/ir.model.access.csv',
         'views/formation_views.xml',
