@@ -1,157 +1,166 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<title>Formation Employé</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-    /* Global */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: #f0f2f5;
-        color: #333;
-        line-height: 1.6;
-    }
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="formation_page_gold_ultra" name="Page Formation Employé Gold Ultra" website="True">
+        <t t-call="website.layout">
+            <div class="formation-page" style="max-width:1200px;margin:auto;padding:50px 20px;font-family:Inter,sans-serif;color:#fff; background:#0b0b0b;">
 
-    /* Header */
-    header {
-        background: linear-gradient(135deg, #4a90e2, #0052cc);
-        color: white;
-        text-align: center;
-        padding: 80px 20px;
-    }
-    header h1 { font-size: 3em; margin-bottom: 10px; font-weight: 700; letter-spacing: 1px; }
-    header p { font-size: 1.3em; opacity: 0.9; }
+                <!-- Header -->
+                <header style="background: linear-gradient(135deg, #000000, #111111); text-align:center; padding:120px 20px; border-bottom: 5px solid #FFD700;">
+                    <h1 style="font-size:3.8em; font-weight:900; letter-spacing:2px; color:#FFD700; margin-bottom:15px;">Formation Employé</h1>
+                    <p style="font-size:1.5em; opacity:0.9; max-width:800px; margin:auto;">Gestion complète et intelligente des formations dans votre entreprise avec élégance et performance.</p>
+                </header>
 
-    /* Container */
-    .container { max-width: 1200px; margin: auto; padding: 50px 20px; }
+                <!-- Section centrale visuel + texte (texte à droite) -->
+              <!-- Section centrale visuel + texte (image pleine largeur, texte en dessous) -->
+<section style="position:relative; display:flex; flex-direction:column; align-items:center; margin:120px 0; background:#0b0b0b; padding:0 20px; border-radius:25px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,0.7);">
 
-    /* Features Grid */
-    .features {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 40px;
-    }
+    <!-- Image de fond immersive -->
+    <img src="photo2.png" 
+         style="width:100%; max-width:1200px; display:block; filter: brightness(0.5); transition: transform 0.3s; cursor:pointer;" 
+         onmouseover="this.style.transform='scale(1.06)'" 
+         onmouseout="this.style.transform='scale(1)'" />
 
-    /* Feature Cards */
-    .feature-card {
-        position: relative;
-        background: white;
-        border-radius: 20px;
-        overflow: hidden;
-        transition: transform 0.3s, box-shadow 0.3s;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-    .feature-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    }
+    <!-- Overlay texte convaincant -->
+    <div style="position:absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px; box-sizing:border-box; color:#fff; text-align:center;">
+        <h2 style="font-size:3em; color:#FFD700; margin-bottom:25px; border-left:5px solid #FFD700; padding-left:20px; background: rgba(0,0,0,0.3); border-radius:10px;">
+            Une formation sur mesure
+        </h2>
+        <p style="font-size:1.25em; line-height:1.9; max-width:700px; margin-bottom:35px; background: rgba(0,0,0,0.3); padding:20px; border-radius:10px;">
+            Offrez à votre entreprise la meilleure expérience de formation ! 
+            Choisissez le thème, les modules, les formateurs et la durée, et visualisez comment chaque choix optimise vos performances et vos marges. 
+            Tout est pensé pour la simplicité, l’efficacité et un impact immédiat.
+        </p>
 
-    /* Image Styling */
-    .feature-card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.5s;
-    }
-    .feature-card:hover img {
-        transform: scale(1.05);
-    }
+        <!-- Bouton Découvrir -->
+        
+    </div>
+</section>
 
-    /* Card Content */
-    .card-content {
-        padding: 25px;
-        text-align: center;
-    }
-    .card-content h3 {
-        font-size: 1.4em;
-        color: #0052cc;
-        margin-bottom: 12px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-    }
-    .card-content p {
-        color: #555;
-        font-size: 1em;
-    }
 
-    /* Footer */
-    footer {
-        background: #1c1c1c;
-        color: #ccc;
-        text-align: center;
-        padding: 30px 10px;
-        font-size: 0.95em;
-    }
+<section style="position:relative; display:flex; flex-direction:column; align-items:center; margin:120px 0; background:#0b0b0b; padding:0 20px; border-radius:25px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,0.7);">
 
-</style>
-</head>
-<body>
+    <!-- Image immersive -->
+    <img src="photo1.png" 
+         style="width:100%; max-width:1200px; display:block; filter: brightness(0.5); transition: transform 0.3s; cursor:pointer;" 
+         onmouseover="this.style.transform='scale(1.06)'" 
+         onmouseout="this.style.transform='scale(1)'" />
 
-<header>
-    <h1>Formation Employé</h1>
-    <p>Gestion complète et intelligente des formations dans votre entreprise</p>
-</header>
+    <!-- Overlay texte & informations tarifaires -->
+    <div style="position:absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:50px; box-sizing:border-box; color:#fff; text-align:center;">
 
-<div class="container">
-    <section class="features">
+        <h2 style="font-size:3em; color:#FFD700; margin-bottom:25px; border-left:5px solid #FFD700; padding-left:20px; background: rgba(0,0,0,0.4); border-radius:10px;">
+            Optimisez vos formations et vos marges
+        </h2>
 
-        <div class="feature-card">
-            <img src="cover.png" alt="Planification des sessions">
-            <div class="card-content">
-                <h3>Planification des sessions</h3>
-                <p>Créez et gérez facilement vos sessions de formation avec un suivi en temps réel des participants.</p>
+        <p style="font-size:1.25em; line-height:1.9; max-width:700px; margin-bottom:35px; background: rgba(0,0,0,0.4); padding:20px; border-radius:10px;">
+            Découvrez en temps réel les tarifs selon chaque formateur et module, ainsi que la marge générée pour chaque session. 
+            Visualisez instantanément vos bénéfices et planifiez vos formations de manière stratégique et rentable.
+        </p>
+
+        <!-- Bloc informations clés (mises en avant comme mini-cards) -->
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin-bottom:30px; max-width:900px;">
+            <div style="background:rgba(255,215,0,0.1); padding:20px 30px; border-radius:15px; min-width:220px; font-weight:700; color:white;">
+                Tarifs par Formateur
+            </div>
+            <div style="background:rgba(255,215,0,0.1); padding:20px 30px; border-radius:15px; min-width:220px; font-weight:700; color:white;">
+                Tarifs par Module
+            </div>
+            <div style="background:rgba(255,215,0,0.1); padding:20px 30px; border-radius:15px; min-width:220px; font-weight:700; color:white;">
+                Marge & Bénéfices
             </div>
         </div>
 
-        <div class="feature-card">
-            <img src="cover.png" alt="Suivi administratif">
-            <div class="card-content">
-                <h3>Suivi administratif</h3>
-                <p>Suivi précis des inscriptions, des présences et des compétences développées.</p>
+      
+    </div>
+</section>
+
+<section style="position:relative; display:flex; flex-direction:column; align-items:center; margin:120px 0; background:#0b0b0b; padding:0 20px; border-radius:25px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,0.7);">
+
+    <!-- Image immersive -->
+    <img src="Giac.png" 
+         style="width:100%; max-width:1200px; display:block; filter: brightness(0.5); transition: transform 0.3s; cursor:pointer;" 
+         onmouseover="this.style.transform='scale(1.06)'" 
+         onmouseout="this.style.transform='scale(1)'" />
+
+    <!-- Overlay texte & informations clés GIAC -->
+    <div style="position:absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:50px; box-sizing:border-box; color:#fff; text-align:center;">
+
+        <h2 style="font-size:3em; color:#FFD700; margin-bottom:25px; border-left:5px solid #FFD700; padding-left:20px; background: rgba(0,0,0,0.4); border-radius:10px;">
+            Suivi complet des dossiers GIAC
+        </h2>
+
+        <p style="font-size:1.25em; line-height:1.9; max-width:700px; margin-bottom:35px; background: rgba(0,0,0,0.4); padding:20px; border-radius:10px;">
+            Gérez efficacement vos dossiers GIAC : suivez l’état des importations, visualisez les documents, les délais, les coûts et optimisez chaque étape pour maximiser vos bénéfices et sécuriser vos opérations.
+        </p>
+
+        <!-- Bloc informations clés (mini-cards) -->
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin-bottom:30px; max-width:900px;">
+            <div style="background:rgba(255,215,0,0.1); padding:20px 30px; border-radius:15px; min-width:220px; font-weight:700; color:white;">
+                Suivi des documents
+            </div>
+            <div style="background:rgba(255,215,0,0.1); padding:20px 30px; border-radius:15px; min-width:220px; font-weight:700; color:white;">
+                Délais et échéances
+            </div>
+            <div style="background:rgba(255,215,0,0.1); padding:20px 30px; border-radius:15px; min-width:220px; font-weight:700; color:white;">
+                Coûts et bénéfices
+            </div>
+            <div style="background:rgba(255,215,0,0.1); padding:20px 30px; border-radius:15px; min-width:220px; font-weight:700; color:white;">
+                Analyse et reporting
             </div>
         </div>
 
-        <div class="feature-card">
-            <img src="cover.png" alt="Indicateurs & KPI">
-            <div class="card-content">
-                <h3>Indicateurs & KPI</h3>
-                <p>Analyse des performances et création de rapports détaillés pour chaque session.</p>
+        
+    </div>
+</section>
+
+                <!-- Séparateur doré -->
+                <div style="height:5px; background:#FFD700; margin:50px 0;"></div>
+
+                <!-- Sections alternées premium -->
+                <section>
+                    <!-- Section 1 -->
+                    <div style="display:flex; align-items:center; gap:50px; margin-bottom:100px; flex-wrap:wrap;">
+                        <img src="employe1.jpg" style="width:45%; border-radius:25px; box-shadow:0 20px 50px rgba(0,0,0,0.6); transition: transform 0.3s;" 
+                             onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+                        <div style="width:50%; background:rgba(255,255,255,0.05); padding:30px; border-radius:20px;">
+                            <h2 style="color:#FFD700; font-size:2.6em; margin-bottom:20px; border-bottom:2px solid #FFD700; display:inline-block;">Planification des sessions</h2>
+                            <p style="font-size:1.15em; color:#fff; line-height:1.9;">
+                                Créez et gérez facilement vos sessions de formation avec un suivi en temps réel des participants. Optimisez vos ressources et vos salles.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Section 2 -->
+                    <div style="display:flex; align-items:center; gap:50px; margin-bottom:100px; flex-wrap:wrap; flex-direction:row-reverse;">
+                        <img src="employe2.jpg" style="width:45%; border-radius:25px; box-shadow:0 20px 50px rgba(0,0,0,0.6); transition: transform 0.3s;" 
+                             onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+                        <div style="width:50%; background:rgba(255,255,255,0.05); padding:30px; border-radius:20px;">
+                            <h2 style="color:#FFD700; font-size:2.6em; margin-bottom:20px; border-bottom:2px solid #FFD700; display:inline-block;">Suivi administratif</h2>
+                            <p style="font-size:1.15em; color:#fff; line-height:1.9;">
+                                Suivi précis des inscriptions, des présences et des compétences développées. Tous vos rapports et tableaux de bord sont centralisés et interactifs.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Section 3 -->
+                    <div style="display:flex; align-items:center; gap:50px; margin-bottom:100px; flex-wrap:wrap;">
+                        <img src="chart.jpg" style="width:45%; border-radius:25px; box-shadow:0 20px 50px rgba(0,0,0,0.6); transition: transform 0.3s;" 
+                             onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+                        <div style="width:50%; background:rgba(255,255,255,0.05); padding:30px; border-radius:20px;">
+                            <h2 style="color:#FFD700; font-size:2.6em; margin-bottom:20px; border-bottom:2px solid #FFD700; display:inline-block;">Indicateurs & Reporting</h2>
+                            <p style="font-size:1.15em; color:#fff; line-height:1.9;">
+                                Analyse des performances et création de rapports détaillés pour chaque session. Des KPI dynamiques pour prendre des décisions éclairées rapidement.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Footer -->
+                <footer style="background:#111; color:#FFD700; text-align:center; padding:50px 10px; font-size:1em; margin-top:50px; border-top: 5px solid #FFD700;">
+                    &copy; 2025 Meravox | www.meravox.com
+                </footer>
+
             </div>
-        </div>
-
-        <div class="feature-card">
-            <img src="cover.png" alt="Gestion des formateurs">
-            <div class="card-content">
-                <h3>Gestion des formateurs</h3>
-                <p>Organisez et suivez vos formateurs et organismes externes facilement.</p>
-            </div>
-        </div>
-
-        <div class="feature-card">
-            <img src="cover.png" alt="Thèmes et modules">
-            <div class="card-content">
-                <h3>Thèmes et modules</h3>
-                <p>Organisez vos formations par thèmes et modules pour un apprentissage structuré.</p>
-            </div>
-        </div>
-
-        <div class="feature-card">
-            <img src="cover.png" alt="Analyse & Reporting">
-            <div class="card-content">
-                <h3>Analyse & Reporting</h3>
-                <p>Générez des rapports détaillés et visualisez les résultats de vos formations.</p>
-            </div>
-        </div>
-
-    </section>
-</div>
-
-<footer>
-    &copy; 2025 Meravox | www.meravox.com
-</footer>
-
-</body>
-</html>
+        </t>
+    </template>
+</odoo>

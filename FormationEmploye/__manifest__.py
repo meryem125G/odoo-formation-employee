@@ -29,7 +29,6 @@
     'data': [
         'security/ir.model.access.csv',
         'views/formation_views.xml',
-        'views/formation_page.xml',
         'views/dossier_giac_view.xml',
         'views/formationOrganisme_views.xml',
         'views/Formateur_views.xml',
@@ -38,6 +37,7 @@
         'views/departement_view.xml',
         'views/formation_menus.xml',
     ],
+    
     'assets': {
         'web.assets_backend': [
             'FormationEmploye/static/src/css/formation_styles.css',
