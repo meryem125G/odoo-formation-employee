@@ -20,7 +20,7 @@
 """,
 
     'price': 45.0,          # valeur float, pas string
-    'currency': 'EUR',
+    'currency': 'USD',
     'author': "Meravox",
     'website': "http://www.meravox.com",
     'depends': ['base', 'hr', 'mail', 'calendar'],
