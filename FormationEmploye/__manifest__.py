@@ -19,12 +19,12 @@
 <p>Vidéo de démonstration (commentée pour l'instant)</p>
 """,
 
-
-
+    'price': 45.0,          # valeur float, pas string
+    'currency': 'EUR',
     'author': "Meravox",
     'website': "http://www.meravox.com",
     'depends': ['base', 'hr', 'mail', 'calendar'],
-    'license': 'LGPL-3',  # ou MIT si tu choisis
+    'license': 'LGPL-3',
     'images': ['static/description/cover.png'],
     'data': [
         'security/ir.model.access.csv',
