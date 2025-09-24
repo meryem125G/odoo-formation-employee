@@ -19,7 +19,7 @@
 <p>Vidéo de démonstration (commentée pour l'instant)</p>
 """,
 
-    'price': 35.0,          # valeur float, pas string
+    'price': 45.0,          # valeur float, pas string
     'currency': 'USD',
     'author': "Meravox",
     'website': "http://www.meravox.com",

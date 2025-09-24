@@ -1,94 +1,101 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Formation Employé</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
+<meta charset="UTF-8">
+<title>Formation Employé</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    /* Global */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f4f6f8;
+        color: #333;
+        line-height: 1.6;
+    }
 
-        header {
-            background-color: #0052cc;
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
+    /* Header */
+    header {
+        background: linear-gradient(135deg, #4a90e2, #0052cc);
+        color: white;
+        text-align: center;
+        padding: 80px 20px;
+    }
+    header h1 { font-size: 3em; margin-bottom: 10px; font-weight: 700; }
+    header p { font-size: 1.3em; opacity: 0.9; }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
+    /* Container */
+    .container { max-width: 1200px; margin: auto; padding: 50px 20px; }
 
-        header p {
-            font-size: 1.2em;
-        }
+    /* Features Grid */
+    .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
-        }
+    /* Feature Cards */
+    .feature-card {
+        position: relative;
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        padding: 0;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
 
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-        }
+    /* Image Styling */
+    .feature-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s;
+    }
+    .feature-card:hover img {
+        transform: scale(1.05);
+    }
 
-        .feature-card {
-            flex: 1 1 300px;
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-        }
+    /* Overlay for images */
+    .feature-card::before {
+        content: "";
+        position: absolute;
+        top:0; left:0; right:0; bottom:0;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.2));
+        pointer-events: none;
+    }
 
-        .feature-card img {
-            max-width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
+    /* Card Content */
+    .card-content {
+        padding: 25px;
+        text-align: center;
+    }
+    .card-content h3 {
+        font-size: 1.4em;
+        color: #0052cc;
+        margin-bottom: 12px;
+        font-weight: 600;
+    }
+    .card-content p {
+        color: #555;
+        font-size: 1em;
+    }
 
-        .feature-card h3 {
-            margin-top: 15px;
-            font-size: 1.2em;
-            color: #0052cc;
-        }
+    /* Footer */
+    footer {
+        background: #1c1c1c;
+        color: #ccc;
+        text-align: center;
+        padding: 30px 10px;
+        font-size: 0.95em;
+    }
 
-        .feature-card p {
-            font-size: 0.95em;
-            color: #555;
-        }
-
-        .video {
-            margin: 40px 0;
-            text-align: center;
-        }
-
-        .video iframe {
-            width: 80%;
-            max-width: 800px;
-            height: 450px;
-            border-radius: 10px;
-        }
-
-        footer {
-            background: #222;
-            color: #eee;
-            padding: 20px;
-            text-align: center;
-        }
-
-    </style>
+</style>
 </head>
 <body>
 
@@ -98,54 +105,57 @@
 </header>
 
 <div class="container">
-
     <section class="features">
+
         <div class="feature-card">
             <img src="cover.png" alt="Planification des sessions">
-            <h3>Planification des sessions</h3>
-            <p>Créez et gérez facilement vos sessions de formation, avec un suivi en temps réel des participants.</p>
+            <div class="card-content">
+                <h3>Planification des sessions</h3>
+                <p>Créez et gérez facilement vos sessions de formation, avec un suivi en temps réel des participants.</p>
+            </div>
         </div>
 
         <div class="feature-card">
             <img src="cover.png" alt="Suivi administratif">
-            <h3>Suivi administratif</h3>
-            <p>Suivi précis des inscriptions, des présences et des compétences développées.</p>
+            <div class="card-content">
+                <h3>Suivi administratif</h3>
+                <p>Suivi précis des inscriptions, des présences et des compétences développées.</p>
+            </div>
         </div>
 
         <div class="feature-card">
-            <img src="cover.png" alt="Indicateurs">
-            <h3>Indicateurs & KPI</h3>
-            <p>Analyse des performances et création de rapports détaillés pour chaque session.</p>
+            <img src="cover.png" alt="Indicateurs & KPI">
+            <div class="card-content">
+                <h3>Indicateurs & KPI</h3>
+                <p>Analyse des performances et création de rapports détaillés pour chaque session.</p>
+            </div>
         </div>
 
         <div class="feature-card">
             <img src="cover.png" alt="Gestion des formateurs">
-            <h3>Gestion des formateurs</h3>
-            <p>Organisez et suivez vos formateurs et organismes externes facilement.</p>
+            <div class="card-content">
+                <h3>Gestion des formateurs</h3>
+                <p>Organisez et suivez vos formateurs et organismes externes facilement.</p>
+            </div>
         </div>
 
         <div class="feature-card">
             <img src="cover.png" alt="Thèmes et modules">
-            <h3>Thèmes et modules</h3>
-            <p>Organisez vos formations par thèmes et modules pour un apprentissage structuré.</p>
+            <div class="card-content">
+                <h3>Thèmes et modules</h3>
+                <p>Organisez vos formations par thèmes et modules pour un apprentissage structuré.</p>
+            </div>
         </div>
 
         <div class="feature-card">
-            <img src="cover.png" alt="Analyse et reporting">
-            <h3>Analyse & Reporting</h3>
-            <p>Générez des rapports détaillés et visualisez les résultats de vos formations.</p>
+            <img src="cover.png" alt="Analyse & Reporting">
+            <div class="card-content">
+                <h3>Analyse & Reporting</h3>
+                <p>Générez des rapports détaillés et visualisez les résultats de vos formations.</p>
+            </div>
         </div>
-    </section>
 
-    <section class="video">
-        <h2>Vidéo de démonstration</h2>
-        <!-- Décommentez et remplacez TON_ID_VIDEO par l’ID YouTube -->
-        <!--
-        <iframe src="https://www.youtube.com/embed/TON_ID_VIDEO" frameborder="0" allowfullscreen></iframe>
-        -->
-        <p>La vidéo montre comment gérer efficacement vos formations avec ce module.</p>
     </section>
-
 </div>
 
 <footer>
